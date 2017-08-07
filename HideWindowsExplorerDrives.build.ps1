@@ -75,7 +75,7 @@ task UpdatPublicFunctionsToExport -if (Test-Path -Path $script:PublicFolder) {
 
     $publicFunctions = "FunctionsToExport = @('{0}')" -f $publicFunctions
 
-    (Get-Content -Path $script:PsdPath) -replace "'FunctionsToExport = '*''", $publicFunctions |
+    (Get-Content -Path $script:PsdPath) -replace "FunctionsToExport = '\*'", $publicFunctions |
         Set-Content -Path $script:PsdPath
 }
 
