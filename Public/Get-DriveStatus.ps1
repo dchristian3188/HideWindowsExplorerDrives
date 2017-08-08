@@ -11,8 +11,7 @@ Function Get-DriveStatus
     )
     Begin
     {
-        $HIDDEN_DRIVES_KEY = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\'
-        $hiddenDrives = (Get-Item -Path $HIDDEN_DRIVES_KEY).GetValue("NoDrives")
+        $hiddenDrives = Get-HiddenDriveValue
         $letterMap = Get-LetterMap
     }
     
