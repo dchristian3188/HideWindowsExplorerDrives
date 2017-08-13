@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-DriveStatus
 
 ## SYNOPSIS
-Gets the current hidden status of the drives.
+Gets Windows drive letters and their status to Windows Explorer.
 
 ## SYNTAX
 
@@ -16,7 +16,8 @@ Get-DriveStatus [[-DriveLetter] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets the current hidden status of the windows drive.
+Windows explorer has the ability to hide drives from the user.
+This cmdlet returns drive letters and their visibility status.
 
 ## EXAMPLES
 
@@ -51,7 +52,7 @@ Returns the hidden status of all the drives.
 ## PARAMETERS
 
 ### -DriveLetter
-{{Fill DriveLetter Description}}
+Drive letter to display. If drive letter not present, all drives returned.
 
 ```yaml
 Type: String[]
@@ -80,3 +81,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
+https://github.com/dchristian3188/HideWindowsExplorerDrives

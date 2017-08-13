@@ -4,8 +4,7 @@ Function Get-DriveStatus
         [Parameter(
             ValueFromPipeline
         )]
-        [ValidatePattern('[a-z]')]
-        [ValidateLength(1, 1)]
+        [ValidatePattern('^[A-z]$')]
         [String[]]
         $DriveLetter
     )

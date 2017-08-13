@@ -1,5 +1,16 @@
 InModuleScope HideWindowsExplorerDrives {
     Describe 'Get-DriveStatus' {
+        Context 'Parameter Validation' {
+            It 'Accepts a single drive letter' {
+                {Get-DriveStatus -DriveLetter C} | Should not throw
+                {Write-Output "C" | Get-DriveStatus } | Should not throw
+            }
+
+            It 'Accepts multiple drive letters' {
+                {Get-DriveStatus -DriveLetter A,B,C} | Should not throw
+                {Write-Output A B C | Get-DriveStatus } | Should not throw
+            }
+        }
         Context 'If no drives are hidden' {
             Mock Get-HiddenDriveValue {return 0}
 

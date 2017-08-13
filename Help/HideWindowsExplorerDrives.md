@@ -2,7 +2,7 @@
 Module Name: HideWindowsExplorerDrives
 Module Guid: 00000000-0000-0000-0000-000000000000 0e578199-c855-4563-92dd-f7a728292190
 Download Help Link: {{Please enter FwLink manually}}
-Help Version: {{Please enter version of help manually (X.X.X.X) format}}
+Help Version: 0.0.0.1
 Locale: en-US
 ---
 
@@ -12,7 +12,8 @@ Locale: en-US
 
 ## HideWindowsExplorerDrives Cmdlets
 ### [Get-DriveStatus](Get-DriveStatus.md)
-{{Manually Enter Get-DriveStatus Description Here}}
+Windows explorer has the ability to hide drives from the user.
+This cmdlet returns drive letters and their visibility status.
 
 ### [Hide-DriveLetter](Hide-DriveLetter.md)
 {{Manually Enter Hide-DriveLetter Description Here}}
