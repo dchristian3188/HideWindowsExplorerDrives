@@ -7,7 +7,7 @@ schema: 2.0.0
 # Hide-DriveLetter
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Hides a drive letter from Windows Explorer.
 
 ## SYNTAX
 
@@ -16,21 +16,26 @@ Hide-DriveLetter [[-DriveLetter] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Hides a drive letter from Windows Explorer.
+Windows Explorer must be reset for all changes to take effect.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+PS C:\> Hide-DriveLetter -DriveLetter C -Verbose
+VERBOSE: Hidding Drive Letter [C]
+VERBOSE: Please restart explorer for changes to take effect
+PS C:\> Stop-Process -Name explorer -Verbose -Force
+VERBOSE: Performing the operation "Stop-Process" on target "explorer (xxxx)".
 ```
 
-{{ Add example description here }}
+This example hides the "C" drive and then restarts explorer to show the changes immediately.
 
 ## PARAMETERS
 
 ### -DriveLetter
-{{Fill DriveLetter Description}}
+The drive letter to hide.
 
 ```yaml
 Type: String[]

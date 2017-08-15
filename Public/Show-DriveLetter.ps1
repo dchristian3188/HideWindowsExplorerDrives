@@ -1,5 +1,6 @@
 Function Show-DriveLetter
 {
+    [CmdletBinding()]
     Param(
         [Parameter(
             ValueFromPipeline
@@ -15,12 +16,10 @@ Function Show-DriveLetter
         {
             Write-Warning "Must be an administrator to show drives"
             $isAdmin = $false
-        }
+        } 
         else 
         {
             $isAdmin = $true
-            $HIDDEN_DRIVES_KEY = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\'
-            $PROPERTY_NAME = "NoDrives"
             $letterMap = Get-LetterMap
         }
         
@@ -34,11 +33,11 @@ Function Show-DriveLetter
                 $driveStatus = Get-DriveStatus -DriveLetter $drive
                 if ($driveStatus.IsHidden)
                 {
-                    $hiddenDrives = (Get-Item -Path $HIDDEN_DRIVES_KEY).GetValue($PROPERTY_NAME)
+                    $hiddenDrives = Get-HiddenDriveValue
                     $driveValue = $hiddenDrives - $letterMap[$drive]
                     Write-Verbose -Message "Showing Drive Letter [$drive]"
-                    Set-ItemProperty -Path $HIDDEN_DRIVES_KEY -Name $PROPERTY_NAME -Value $driveValue -Force
-                }
+                    Set-HiddenDriveValue -NewValue $driveValue
+                } 
                 else
                 {
                     Write-Verbose -Message "Drive [$drive] already shown"   
@@ -46,5 +45,9 @@ Function Show-DriveLetter
             }
         }
         
+    }
+    End
+    {
+        Write-Verbose -Message "Please restart explorer for changes to take effect"
     }
 }

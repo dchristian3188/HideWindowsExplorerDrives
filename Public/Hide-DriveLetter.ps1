@@ -18,8 +18,6 @@ Function Hide-DriveLetter
         }
         else
         {
-            $HIDDEN_DRIVES_KEY = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\'
-            $PROPERTY_NAME = "NoDrives"
             $letterMap = Get-LetterMap
             $isAdmin = $true
         }
@@ -31,19 +29,23 @@ Function Hide-DriveLetter
             ForEach ($drive in $DriveLetter)
             {
                 $driveStatus = Get-DriveStatus -DriveLetter $drive
-                If ($driveStatus.IsHidden)
+                if ($driveStatus.IsHidden)
                 {
                     Write-Verbose -Message "Drive Letter [$drive] already hidden"
                 }
                 else
                 {
-                    $hiddenDrives = (Get-Item -Path $HIDDEN_DRIVES_KEY).GetValue($PROPERTY_NAME)
+                    $hiddenDrives = Get-HiddenDriveValue
                     $driveValue = $hiddenDrives -bor $letterMap[$drive]
                     Write-Verbose -Message "Hidding Drive Letter [$drive]"
-                    Set-ItemProperty -Path $HIDDEN_DRIVES_KEY -Name $PROPERTY_NAME -Value $driveValue -Force
+                    Set-HiddenDriveValue -NewValue $driveValue
                 }
             
             }
         }
+    }
+    End
+    {
+        Write-Verbose -Message "Please restart explorer for changes to take effect"
     }
 }

@@ -7,7 +7,7 @@ schema: 2.0.0
 # Get-DriveStatus
 
 ## SYNOPSIS
-Gets Windows drive letters and their status to Windows Explorer.
+Gets drive letters and their visibility status to Windows Explorer.
 
 ## SYNTAX
 
@@ -47,7 +47,7 @@ DriveLetter IsHidden
 C              False
 ```
 
-Returns the hidden status of all the drives.
+Returns the hidden status of the C drive.
 
 ## PARAMETERS
 
