@@ -1,13 +1,13 @@
-task . Clean, Build, Tests, GenerateGraph
+task . Clean, Build, Tests, GenerateGraph, Stats
 task Tests ImportCompipledModule, Pester
-task CreateManifest copyPSD,UpdatPublicFunctionsToExport, UpdateDSCResourceToExport
+task CreateManifest copyPSD, UpdatPublicFunctionsToExport, UpdateDSCResourceToExport
 task Build Compile, CreateManifest
-
+task Stats RemoveStats, WriteStats
 
 $script:ModuleName = Split-Path -Path $PSScriptRoot -Leaf
 $script:ModuleRoot = $PSScriptRoot
 $script:OutPutFolder = "$PSScriptRoot\Output"
-$script:ImportFolders = @('Public', 'Internal', 'Classes', 'DSCResources','TypeExtensions')
+$script:ImportFolders = @('Public', 'Internal', 'Classes', 'DSCResources', 'TypeExtensions')
 $script:PsmPath = Join-Path -Path $PSScriptRoot -ChildPath "Output\$($script:ModuleName)\$($script:ModuleName).psm1"
 $script:PsdPath = Join-Path -Path $PSScriptRoot -ChildPath "Output\$($script:ModuleName)\$($script:ModuleName).psd1"
 $script:PublicFolder = 'Public'
@@ -104,9 +104,27 @@ task Pester {
 task GenerateGraph -if (Test-Path -Path 'Graphs') {
     $Graphs = Get-ChildItem -Path "Graphs\*"
    
-    Foreach($graph in $Graphs)
+    Foreach ($graph in $Graphs)
     {
-        $graphLocation = [IO.Path]::Combine($script:OutPutFolder,$script:ModuleName,"$($graph.BaseName).png")
+        $graphLocation = [IO.Path]::Combine($script:OutPutFolder, $script:ModuleName, "$($graph.BaseName).png")
         . $graph.FullName -DestinationPath $graphLocation -Hide
     }
+}
+
+task RemoveStats -if (Test-Path -Path "$script:OutPutFolder\stats.json") {
+    Remove-Item -Force -Verbose -Path "$script:OutPutFolder\stats.json"
+}
+
+task WriteStats {
+    $folders = Get-ChildItem -Directory | 
+        Where-Object {$PSItem.Name -ne 'Output'}
+    
+    $stats = foreach ($folder in $folders)
+    {
+        Get-Content -Path "$folder\*" | 
+            Measure-Object -Word -Line -Character | 
+            Select-Object -Property @{N = "FolderName"; E = {$folder.Name}}, Words, Lines, Characters
+    }
+    $stats | ConvertTo-Json > "$script:OutPutFolder\stats.json"
+
 }
