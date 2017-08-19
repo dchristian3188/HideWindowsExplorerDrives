@@ -16,8 +16,7 @@ Windows explorer has the ability to hide drives from the user.
 This cmdlet returns drive letters and their visibility status.
 
 ### [Hide-DriveLetter](Hide-DriveLetter.md)
-{{Manually Enter Hide-DriveLetter Description Here}}
+Hides a drive letter from Windows Explorer.
 
 ### [Show-DriveLetter](Show-DriveLetter.md)
-{{Manually Enter Show-DriveLetter Description Here}}
-
+Makes sure a drive letter is visible to Windows Explorer.

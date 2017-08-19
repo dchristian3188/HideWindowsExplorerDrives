@@ -17,7 +17,7 @@ Hide-DriveLetter [[-DriveLetter] <String[]>] [<CommonParameters>]
 
 ## DESCRIPTION
 Hides a drive letter from Windows Explorer.
-Windows Explorer must be reset for all changes to take effect.
+Windows Explorer must be restarted for all changes to take effect.
 
 ## EXAMPLES
 
@@ -64,3 +64,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
+https://github.com/dchristian3188/HideWindowsExplorerDrives

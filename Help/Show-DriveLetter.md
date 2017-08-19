@@ -7,7 +7,7 @@ schema: 2.0.0
 # Show-DriveLetter
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Sets the drive letter to be visible to Windows Explorer.
 
 ## SYNTAX
 
@@ -16,21 +16,26 @@ Show-DriveLetter [[-DriveLetter] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Makes sure a drive letter is visible to Windows Explorer.
+Windows Explorer must be restarted for all changes to take effect.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> {{ Add example code here }}
+C:\> Show-DriveLetter -DriveLetter C -Verbose
+VERBOSE: Showing Drive Letter [C]
+VERBOSE: Please restart explorer for changes to take effect
+PS C:\> Stop-Process -Name explorer -Verbose -Force
+VERBOSE: Performing the operation "Stop-Process" on target "explorer (xxxx)".
 ```
 
-{{ Add example description here }}
+This example enables the "C" drive to be visible to Explorer and then restarts explorer to show the changes immediately.
 
 ## PARAMETERS
 
 ### -DriveLetter
-{{Fill DriveLetter Description}}
+The drive letter to show.
 
 ```yaml
 Type: String[]
@@ -59,3 +64,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
+https://github.com/dchristian3188/HideWindowsExplorerDrives
