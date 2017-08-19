@@ -64,4 +64,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-https://github.com/dchristian3188/HideWindowsExplorerDrives
+[Github](https://github.com/dchristian3188/HideWindowsExplorerDrives)

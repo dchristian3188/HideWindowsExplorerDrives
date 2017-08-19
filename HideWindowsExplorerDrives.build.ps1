@@ -1,4 +1,4 @@
-task . Clean, Build, Tests, GenerateGraph, Stats
+task . Clean, Build, Tests, ExportHelp, GenerateGraph, Stats
 task Tests ImportCompipledModule, Pester
 task CreateManifest copyPSD, UpdatPublicFunctionsToExport, UpdateDSCResourceToExport
 task Build Compile, CreateManifest
@@ -10,6 +10,7 @@ $script:OutPutFolder = "$PSScriptRoot\Output"
 $script:ImportFolders = @('Public', 'Internal', 'Classes', 'DSCResources', 'TypeExtensions')
 $script:PsmPath = Join-Path -Path $PSScriptRoot -ChildPath "Output\$($script:ModuleName)\$($script:ModuleName).psm1"
 $script:PsdPath = Join-Path -Path $PSScriptRoot -ChildPath "Output\$($script:ModuleName)\$($script:ModuleName).psd1"
+$script:HelpPath = Join-Path -Path $PSScriptRoot -ChildPath "Output\$($script:ModuleName)\en-US"
 $script:PublicFolder = 'Public'
 $script:DSCResourceFolder = 'DSCResources'
 
@@ -127,4 +128,8 @@ task WriteStats {
     }
     $stats | ConvertTo-Json > "$script:OutPutFolder\stats.json"
 
+}
+
+task ExportHelp -if (Test-Path -Path "$script:ModuleRoot\Help") {
+    New-ExternalHelp -Path "$script:ModuleRoot\Help" -OutputPath $script:HelpPath
 }
