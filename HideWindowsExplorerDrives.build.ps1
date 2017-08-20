@@ -1,5 +1,6 @@
 task . Clean, Build, Tests, ExportHelp, GenerateGraph, WriteStats
 task Tests ImportCompipledModule, Pester
+task Tests ImportCompipledModule, Pester
 task CreateManifest copyPSD, UpdatPublicFunctionsToExport, UpdateDSCResourceToExport
 task Build Compile, CreateManifest
 task Stats RemoveStats, WriteStats
