@@ -1,4 +1,4 @@
-task . Clean, Build, Tests, ExportHelp, GenerateGraph, Stats
+task . Clean, Build, Tests, ExportHelp, GenerateGraph, WriteStats
 task Tests ImportCompipledModule, Pester
 task CreateManifest copyPSD, UpdatPublicFunctionsToExport, UpdateDSCResourceToExport
 task Build Compile, CreateManifest
@@ -112,8 +112,8 @@ task GenerateGraph -if (Test-Path -Path 'Graphs') {
     }
 }
 
-task RemoveStats -if (Test-Path -Path "$script:OutPutFolder\stats.json") {
-    Remove-Item -Force -Verbose -Path "$script:OutPutFolder\stats.json"
+task RemoveStats -if (Test-Path -Path "$($script:OutPutFolder)\stats.json") {
+    Remove-Item -Force -Verbose -Path "$($script:OutPutFolder)\stats.json" 
 }
 
 task WriteStats {

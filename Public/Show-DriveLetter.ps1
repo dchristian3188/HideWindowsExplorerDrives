@@ -12,17 +12,15 @@ Function Show-DriveLetter
     )
     Begin
     {
-        if (!([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
+        $isAdmin = Test-IsAdmin
+        if ($isAdmin)
         {
-            Write-Warning "Must be an administrator to show drives"
-            $isAdmin = $false
-        } 
-        else 
-        {
-            $isAdmin = $true
             $letterMap = Get-LetterMap
         }
-        
+        else
+        {
+            Write-Warning "Must be an administrator to show drives"           
+        }
     }
     Process
     {

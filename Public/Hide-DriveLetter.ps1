@@ -11,15 +11,14 @@ Function Hide-DriveLetter
     )
     Begin
     {
-        if (!([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
+        $isAdmin = Test-IsAdmin
+        if ($isAdmin)
         {
-            Write-Warning "Must be an administrator to hide drives"
-            $isAdmin = $false
+            $letterMap = Get-LetterMap
         }
         else
         {
-            $letterMap = Get-LetterMap
-            $isAdmin = $true
+            Write-Warning "Must be an administrator to hide drives"           
         }
     }
     Process
