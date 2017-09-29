@@ -1,0 +1,5 @@
+site_name: Hide Windows Explorer Drives
+repo_url: https://github.com/dchristian3188/hidewindowsexplorerdrives
+theme: readthedocs
+site_author: David Christian
+docs_dir: Help
