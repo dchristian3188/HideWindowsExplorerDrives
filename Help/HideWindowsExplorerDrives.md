@@ -8,7 +8,7 @@ Locale: en-US
 
 # HideWindowsExplorerDrives Module
 ## Description
-{{Manually Enter Description Here}}
+A module to help make showing and hiding Windows Explorer drives easier.
 
 ## HideWindowsExplorerDrives Cmdlets
 ### [Get-DriveStatus](Get-DriveStatus.md)
